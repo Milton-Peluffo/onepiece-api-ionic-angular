@@ -1,0 +1,7 @@
+{
+  "name": "one-piece-ionic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

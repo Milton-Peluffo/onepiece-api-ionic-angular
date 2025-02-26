@@ -1,0 +1,104 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title class="logo">
+      <img src="/assets/images/isologo.png" />
+    </ion-title>
+
+    <ion-item mode="ios" lines="none" slot="end" class="item-lang">
+      <ion-select
+        [(ngModel)]="selectedLanguage"
+        (ionChange)="setLanguage()"
+        toggleIcon="globe"
+        interface="popover"
+      >
+        <ion-select-option value="es">
+          {{ 'LANG.spanish' | translate }}</ion-select-option
+        >
+        <ion-select-option value="en">
+          {{ 'LANG.english' | translate }}</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<div class="shapedividers_com-1454"></div>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" class="d-flex-center">
+        <div class="filters animate__animated animate__fadeInDown" >
+          <ion-item lines="none" class="custom-input">
+            <ion-icon slot="start" name="search" color="primary"></ion-icon>
+            <ion-input
+              (ionInput) = "getEpisodesByNumber()"
+              [(ngModel)] = "episode_number"
+              type="number"
+              labelPlacement="floating"
+              [label]="'HOME.search_episode_by_number' | translate"
+              debounce = "1000"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="!loading && !episode_number">
+            <ion-icon class="select-icon" slot="start" src="assets/images/isotipo.svg"></ion-icon>
+            <ion-select
+            [okText] = "'BUTTONS.accept' | translate"
+            [cancelText] = "'BUTTONS.cancel' | translate"
+            mode="ios"
+            (ionChange) ="getEpisodesBySeason()"
+            labelPlacement="stacked"
+            [label]="'HOME.season' | translate"
+            [(ngModel)]="selectedSeason">
+              <ion-select-option *ngFor="let s of seasons" [value]="s.id">{{s.title}}</ion-select-option>
+            </ion-select>
+          
+          </ion-item>
+
+        </div>
+      </ion-col>
+
+      <ion-col class="animate__animated animate__fadeInUp" *ngFor="let e of episodes" size-lg="4" size-md="6" size-sm="12" size="12">
+        <ion-card class="episode-card" mode="ios">
+          <ion-avatar>
+            <img [src] = e.image>
+          </ion-avatar>
+          <ion-card-content>
+            <p class="space-between">
+              {{'HOME.episode' | translate}} : {{e.episode}}
+              <a [href]="e.url" target="blank" rel="noopener norefer">
+              <ion-button color="light" mode="md" class="ion-no-padding play-btn" shape="round">
+                <ion-icon name="play" color="primary"></ion-icon>
+              </ion-button>
+            </a>
+            </p>
+
+            <div class="title">{{e.title}}</div>
+            <p>{{e.description | slice:0:100}}...</p>
+          </ion-card-content>
+
+        </ion-card>
+      </ion-col>
+
+
+    </ion-row>
+  </ion-grid>
+
+  <!--    ====== LOADING ======   -->
+  <div *ngIf="loading" class="loading">
+    <ion-spinner name="crescent" color="primary"></ion-spinner>
+  </div>
+
+
+  <!--    ====== SIN RESULTADOS ======   -->
+  <div class="error" *ngIf="episode_number && !episodes.length">
+    <ion-icon src="assets/images/isotipo.svg"></ion-icon>
+    <h4>{{'ERRORS.no_results' | translate}}</h4>
+  </div>
+
+  
+  
+
+
+</ion-content>

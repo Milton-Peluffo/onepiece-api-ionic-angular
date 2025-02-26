@@ -1,0 +1,20 @@
+ion-content{
+    --ion-background-color: url(/assets/images/splash.gif);
+}
+.glass-content{
+    /* From https://css.glass */
+    background: rgba(91, 92, 128, 0.575);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    width: 100%;
+    height: 100vh;
+}
+.d-flex-center{
+    height: 90vh;
+}
+img{
+    border-radius: 150px;
+}
