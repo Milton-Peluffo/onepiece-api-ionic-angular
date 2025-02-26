@@ -88,7 +88,7 @@ Obtiene información de un episodio específico por su número.
 getEpisodesByNumber(number: string) {
   return this.http.get(`${this.baseUrl}/episode/${number}`, {
     headers: {
-      'x-rapidapi-key': 'TU_CLAVE_API',
+      'x-rapidapi-key': 'CLAVE_API',
       'x-rapidapi-host': 'one-piece-episodes.p.rapidapi.com'
     },
     params: { language: 'es' },
