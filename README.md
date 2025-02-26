@@ -1,6 +1,6 @@
 # OnePiece API Ionic Angular
 
-## Descripción General del proyecto
+## Descripción General Del Proyecto
 
 Este proyecto es una aplicación web desarrollada con Ionic y Angular que se conecta a una API pública para listar los episodios del anime One Piece. La aplicación permite a los usuarios:
 
